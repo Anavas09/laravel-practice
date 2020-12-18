@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\MessagesController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Http\Controllers\PortfolioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +19,6 @@ use App\Models\User;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
-Route::get('/users', function () {
-    $users = User::all();
-    return view('users', compact('users'));
-});
 
 Route::get('/user/{name}', function ($name = "guess") {
     return "Hello ".$name;
@@ -39,15 +36,24 @@ Route::get('/home', function(){
     echo "<a href='" . route('we') . "'>qqqq</a>";
 });
 */
-
-$portfolios = [/*
+$portfolios = [
     ['title' => 'Portfolio 1'],
     ['title' => 'Portfolio 2'],
     ['title' => 'Portfolio 3'],
-    ['title' => 'Portfolio 4']*/
+    ['title' => 'Portfolio 4']
 ];
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
-Route::view('/portfolio', 'portfolio', compact('portfolios'))->name('portfolios');
+//Route::view('/portfolio', 'portfolio', compact('portfolios'))->name('portfolio');
+Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
 Route::view('/contact', 'contact')->name('contact');
+
+Route::get('/users', function () {
+    $users = User::all();
+    return view('users', compact('users'));
+});
+
+Route::resource('projects', PortfolioController::class)->only(['index','show']);
+
+Route::post('/contact', [MessagesController::class, 'store']);
