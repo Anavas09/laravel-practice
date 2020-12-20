@@ -26,7 +26,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -35,9 +35,29 @@ class PortfolioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        //return request();
+        //$title = request('title');
+        //$url = request('url');
+        //$description = request('description');
+
+        /*return Project::create([
+            'title' => request('title'),
+            'url' => request('url'),
+            'description' => request('description')
+        ]);*/
+        
+        /*Project::create([
+            'title' => request('title'),
+            'url' => request('url'),
+            'description' => request('description')
+        ]);*/
+
+        //input name property and column name from database are the same
+        Project::create(request()->all());
+
+        return redirect()->route('portfolio.index');
     }
 
     /**
@@ -46,9 +66,8 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        $project = Project::find($id);
 
         return view('projects.show', compact('project'));
     }

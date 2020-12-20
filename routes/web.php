@@ -47,7 +47,9 @@ Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
 //Route::view('/portfolio', 'portfolio', compact('portfolios'))->name('portfolio');
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
-Route::get('/portfolio/{id}', [PortfolioController::class, 'show'])->name('portfolio.show');
+Route::post('/portfolio', [PortfolioController::class, 'store'])->name('portfolio.store');
+Route::get('/portfolio/create', [PortfolioController::class, 'create'])->name('portfolio.create');
+Route::get('/portfolio/{project}', [PortfolioController::class, 'show'])->name('portfolio.show');
 Route::view('/contact', 'contact')->name('contact');
 
 Route::get('/users', function () {

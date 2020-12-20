@@ -18,5 +18,6 @@
         @endforelse
 
         {{ $projects->links() }}
-    </ul> 
+    </ul>
+    <button><a href={{ route('portfolio.create') }} target="_blank" rel="noopener noreferrer">Create project</a></button>
 @endsection
