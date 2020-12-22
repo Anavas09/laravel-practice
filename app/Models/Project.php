@@ -9,7 +9,8 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'url', 'description'];
+    //Only when NOT use require()->all()
+    protected $guarded = [];
 
     public function getRouteKeyName()
     {

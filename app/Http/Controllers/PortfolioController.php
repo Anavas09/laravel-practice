@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Http\Requests\SaveProjectRequest;
 
 class PortfolioController extends Controller
 {
@@ -26,7 +27,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $project = new Project;
+        return view('projects.create', compact('project'));
     }
 
     /**
@@ -35,7 +37,7 @@ class PortfolioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(SaveProjectRequest $request)
     {
         //return request();
         //$title = request('title');
@@ -55,7 +57,17 @@ class PortfolioController extends Controller
         ]);*/
 
         //input name property and column name from database are the same
-        Project::create(request()->all());
+        //Project::create(request()->all()); //Theres a problem with massive asignation
+
+        /*$fields = request()->validate([
+            'title' => 'required',
+            'url' => 'required',
+            'description' => 'required'
+        ]);*/
+
+        //Using SaveProjectRequest
+
+        Project::create( $request->validated() );
 
         return redirect()->route('portfolio.index');
     }
@@ -78,9 +90,9 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+        return view('projects.edit', compact('project'));
     }
 
     /**
@@ -90,9 +102,11 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Project $project, SaveProjectRequest $request)
     {
-        //
+        $project->update($request->validated());
+
+        return redirect()->route('portfolio.show', $project); 
     }
 
     /**
