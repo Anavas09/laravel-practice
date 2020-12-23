@@ -14,6 +14,9 @@
 </head>
 <body>
     @include('layouts.navbar.navbar')
+    
+    @include('partials.session-status')
+    
     @yield('content')
     
 </body>

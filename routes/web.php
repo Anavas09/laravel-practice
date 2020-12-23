@@ -36,22 +36,27 @@ Route::get('/home', function(){
     echo "<a href='" . route('we') . "'>qqqq</a>";
 });
 */
+/*
 $portfolios = [
     ['title' => 'Portfolio 1'],
     ['title' => 'Portfolio 2'],
     ['title' => 'Portfolio 3'],
     ['title' => 'Portfolio 4']
 ];
-
+*/
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
 //Route::view('/portfolio', 'portfolio', compact('portfolios'))->name('portfolio');
-Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
+/*Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
 Route::post('/portfolio', [PortfolioController::class, 'store'])->name('portfolio.store');
 Route::get('/portfolio/create', [PortfolioController::class, 'create'])->name('portfolio.create');
 Route::get('/portfolio/{project}/edit', [PortfolioController::class, 'edit'])->name('portfolio.edit');
 Route::patch('/portfolio/{project}', [PortfolioController::class, 'update'])->name('portfolio.update');
+Route::delete('/portfolio/{project}', [PortfolioController::class, 'destroy'])->name('portfolio.destroy');
 Route::get('/portfolio/{project}', [PortfolioController::class, 'show'])->name('portfolio.show');
+*/
+
+Route::resource('portfolio', PortfolioController::class)->parameters(['portfolio' => 'project']);
 Route::view('/contact', 'contact')->name('contact');
 
 Route::get('/users', function () {
@@ -59,6 +64,6 @@ Route::get('/users', function () {
     return view('users', compact('users'));
 });
 
-Route::resource('projects', PortfolioController::class)->only(['index','show']);
+//Route::resource('projects', PortfolioController::class)->only(['index','show']);
 
 Route::post('/contact', [MessagesController::class, 'store']);

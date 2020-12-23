@@ -69,7 +69,7 @@ class PortfolioController extends Controller
 
         Project::create( $request->validated() );
 
-        return redirect()->route('portfolio.index');
+        return redirect()->route('portfolio.index')->with('status', 'Project created succesfully.');
     }
 
     /**
@@ -106,7 +106,7 @@ class PortfolioController extends Controller
     {
         $project->update($request->validated());
 
-        return redirect()->route('portfolio.show', $project); 
+        return redirect()->route('portfolio.show', $project)->with('status', 'Project updated succesfully.'); 
     }
 
     /**
@@ -115,8 +115,10 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('portfolio.index')->with('status', 'Project was deleted succesfully.');
     }
 }

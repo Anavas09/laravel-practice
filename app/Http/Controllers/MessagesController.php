@@ -40,7 +40,7 @@ class MessagesController extends Controller
             'content' => 'required|min:3'
         ]);
         
-        return 'Datos good';
+        return back()->with('status', 'Message received. Our team contact you in 24 hours or less.');
     }
 
     /**

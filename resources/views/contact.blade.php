@@ -4,6 +4,9 @@
 
 @section('content')
     <h1>Contact</h1>
+
+    @include('partials.session-status')
+
     <form method="POST" action="{{ route('contact')}}">
         @csrf
         <input type="text" name="name" value="{!! old('name') !!}" placeholder="Name"><br>

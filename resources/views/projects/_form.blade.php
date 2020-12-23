@@ -7,7 +7,7 @@
 <br>
 <label for="formURL">
     URL <br>
-    <input type="text" name="url" id="formURL" value="{{ old('url', $project->utl) }}"><br>
+    <input type="text" name="url" id="formURL" value="{{ old('url', $project->url) }}"><br>
     {!! $errors->first('url', '<span>:message</span><br>') !!}
 </label>
 <br>
