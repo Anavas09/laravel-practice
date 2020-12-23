@@ -67,3 +67,10 @@ Route::get('/users', function () {
 //Route::resource('projects', PortfolioController::class)->only(['index','show']);
 
 Route::post('/contact', [MessagesController::class, 'store']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
