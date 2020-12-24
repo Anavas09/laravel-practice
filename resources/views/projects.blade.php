@@ -19,5 +19,7 @@
 
         {{ $projects->links() }}
     </ul>
-    <button><a href={{ route('portfolio.create') }} target="_blank" rel="noopener noreferrer">Create project</a></button>
+    @auth
+        <button><a href={{ route('portfolio.create') }} target="_blank" rel="noopener noreferrer">Create project</a></button>
+    @endauth
 @endsection

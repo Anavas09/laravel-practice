@@ -4,6 +4,7 @@ use App\Http\Controllers\MessagesController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,10 +68,5 @@ Route::get('/users', function () {
 //Route::resource('projects', PortfolioController::class)->only(['index','show']);
 
 Route::post('/contact', [MessagesController::class, 'store']);
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['register' => false]);

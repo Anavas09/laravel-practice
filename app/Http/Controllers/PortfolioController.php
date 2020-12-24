@@ -8,6 +8,11 @@ use App\Http\Requests\SaveProjectRequest;
 
 class PortfolioController extends Controller
 {
+    public function __constructor()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
+
     /**
      * Display a listing of the resource.
      *

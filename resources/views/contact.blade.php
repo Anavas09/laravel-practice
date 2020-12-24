@@ -3,24 +3,58 @@
 @section('title', 'Contact')
 
 @section('content')
-    <h1>Contact</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-10 col-lg-6 mx-auto">
+                <form
+                    method="POST"
+                    action="{{ route('contact')}}"
+                    class="bg-white shadow rounded py-3 px-4"
+                >
+                    @csrf
+                    <h1 class="display-4">Contact</h1>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name" class="@error('name') is-invalid @else border-0 @enderror form-control bg-light shadow-sm" type="text" name="name" value="{!! old('name') !!}" placeholder="Name">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" class="@error('email') is-invalid @else border-0 @enderror form-control bg-light shadow-sm" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-    @include('partials.session-status')
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input id="subject" class="@error('subject') is-invalid @else border-0 @enderror form-control bg-light shadow-sm" type="text" name="subject" value="{{ old('subject') }}" placeholder="Subject">
+                        @error('subject')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-    <form method="POST" action="{{ route('contact')}}">
-        @csrf
-        <input type="text" name="name" value="{!! old('name') !!}" placeholder="Name"><br>
-        {!! $errors->first('name', '<span>:message</span><br>') !!}
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea class="@error('content') is-invalid @else border-0 @enderror form-control bg-light shadow-sm" id="content" name="content">{{ old('content') }}</textarea>
+                        @error('content')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-        <input type="email" name="email" value="{{ old('email') }}" placeholder="Email"><br>
-        {!! $errors->first('email', '<span>:message</span><br>') !!}
-
-        <input type="text" name="subject" value="{{ old('subject') }}" placeholder="Subject"><br>
-        {!! $errors->first('subject', '<span>:message</span><br>') !!}
-
-        <textarea name="content">{{ old('content') }}</textarea><br>
-        {!! $errors->first('content', '<span>:message</span><br>') !!}
-
-        <button>Send</button>
-    </form>
+                    <button class="btn btn-primary btn-lg btn-block">Send</button>
+                </form></div>
+        </div>
+    </div>
 @endsection
