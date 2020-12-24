@@ -1,21 +1,17 @@
 @csrf
-<label for="formTitle">
-    Title <br>
-    <input type="text" name="title" id="formTitle" value="{{ old('title', $project->title) }}" ><br>
-    {!! $errors->first('title', '<span>:message</span><br>') !!}
-</label>
-<br>
-<label for="formURL">
-    URL <br>
-    <input type="text" name="url" id="formURL" value="{{ old('url', $project->url) }}"><br>
-    {!! $errors->first('url', '<span>:message</span><br>') !!}
-</label>
-<br>
-<label for="formDescription">
-    Description <br>
-    <textarea name="description" id="formDescription">{{ old('description', $project->description) }}</textarea><br>
-    {!! $errors->first('description', '<span>:message</span><br>') !!}
-</label>
-<br>
-<br>
-<button>{{$btnText}}</button>
+<div class="form-group">
+    <label for="formTitle">Title</label>
+    <input class="form-control border-0 bg-light shadow-sm" type="text" name="title" id="formTitle" value="{{ old('title', $project->title) }}" >
+</div>
+
+<div class="form-group">
+    <label for="formURL">URL</label>
+    <input class="form-control border-0 bg-light shadow-sm" type="text" name="url" id="formURL" value="{{ old('url', $project->url) }}">
+</div>
+    
+<div class="form-group">
+    <label for="formDescription">Description</label>
+    <textarea class="form-control border-0 bg-light shadow-sm" name="description" id="formDescription">{{ old('description', $project->description) }}</textarea>
+</div>
+
+<button class="btn btn-primary btn-lg btn-block">{{$btnText}}</button>

@@ -13,6 +13,7 @@
                 >
                     @csrf
                     <h1 class="display-4">Contact</h1>
+                    <hr>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input id="name" class="@error('name') is-invalid @else border-0 @enderror form-control bg-light shadow-sm" type="text" name="name" value="{!! old('name') !!}" placeholder="Name">
@@ -54,7 +55,8 @@
                     </div>
 
                     <button class="btn btn-primary btn-lg btn-block">Send</button>
-                </form></div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
